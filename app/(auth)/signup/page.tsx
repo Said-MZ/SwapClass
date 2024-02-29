@@ -4,30 +4,11 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../submit-button";
 
-export default function Login({
+export default function Signup({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
-  const signIn = async (formData: FormData) => {
-    "use server";
-
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
-    return redirect("/app");
-  };
-
   const signUp = async (formData: FormData) => {
     "use server";
 
@@ -73,10 +54,9 @@ export default function Login({
         </svg>{" "}
         Back
       </Link>
-
       <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
         <h1 className="text-3xl font-bold capitalize text-center mb-3">
-          Log in
+          Sign up
         </h1>
         <label className="text-md" htmlFor="email">
           Email
@@ -98,16 +78,16 @@ export default function Login({
           required
         />
         <SubmitButton
-          formAction={signIn}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
-          pendingText="Signing In..."
+          formAction={signUp}
+          pendingText="Signing Up..."
+          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2 font-semibold  hover:brightness-75 transition-all duration-200"
         >
-          Sign In
+          Sign Up
         </SubmitButton>
         <p>
-          New user?{" "}
-          <Link href={"/signup"} className="underline">
-            Sign Up
+          Already have an account?{" "}
+          <Link href={"/login"} className="underline">
+            Log In
           </Link>
         </p>
         {searchParams?.message && (

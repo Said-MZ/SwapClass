@@ -48,8 +48,7 @@ export default function Signup({
 
     if (error) {
       console.log(error);
-
-      return redirect("/login?message=Could not authenticate user");
+      return redirect("/signup?message=" + error.message);
     }
 
     await supabase
@@ -120,6 +119,7 @@ export default function Signup({
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           type="password"
           name="password"
+          minLength={6}
           placeholder="••••••••"
           required
         />

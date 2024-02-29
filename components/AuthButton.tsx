@@ -25,7 +25,7 @@ export default async function AuthButton() {
         {/* <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
           Logout
         </button> */}
-        <Btn text="Logout" dark={true} isLink={false} href={null} />
+        <Btn text="Logout" dark={true} isLink={false} href={null} size="" />
       </form>
     </div>
   ) : (

@@ -10,8 +10,7 @@ export default async function AppPage() {
 
   if (!user) {
     console.log(user, "error");
-
-    return redirect("/login");
+    return redirect("/");
   }
 
   return <div className="">app</div>;

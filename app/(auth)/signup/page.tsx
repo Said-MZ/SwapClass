@@ -15,6 +15,27 @@ export default function Signup({
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const stdId = formData.get("stdId") as string;
+    const name = formData.get("name") as string;
+
+    const isIdValid = () => {
+      if (!/^\d{8}$/.test(stdId)) {
+        return false;
+      }
+      return true;
+    };
+
+    const isEmailValid = () => {
+      const regex = new RegExp(`^.*${stdId}@std.psut.edu.jo$`);
+      return regex.test(email);
+    };
+
+    if (!isEmailValid() || !isIdValid()) {
+      return redirect(
+        "/signup?message=Both email and ID should be real PSUT student credentials."
+      );
+    }
+
     const supabase = createClient();
 
     const { error } = await supabase.auth.signUp({
@@ -26,10 +47,17 @@ export default function Signup({
     });
 
     if (error) {
+      console.log(error);
+
       return redirect("/login?message=Could not authenticate user");
     }
 
-    return redirect("/login?message=Check email to continue sign in process");
+    await supabase
+      .from("users")
+      .insert([{ id: stdId, name, email }])
+      .select();
+
+    return redirect("/signup?message=Check email to continue sign in process");
   };
 
   return (
@@ -58,13 +86,31 @@ export default function Signup({
         <h1 className="text-3xl font-bold capitalize text-center mb-3">
           Sign up
         </h1>
+        <label className="text-md" htmlFor="stdId">
+          Student ID
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="stdId"
+          placeholder="20221234"
+          required
+        />
+        <label className="text-md" htmlFor="name">
+          Name
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="name"
+          placeholder="John Doe"
+          required
+        />
         <label className="text-md" htmlFor="email">
           Email
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="email"
-          placeholder="you@example.com"
+          placeholder="sai20221234@std.psut.edu.jo"
           required
         />
         <label className="text-md" htmlFor="password">

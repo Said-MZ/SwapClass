@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 const SinglePostPage = async ({
   params,
@@ -8,6 +9,16 @@ const SinglePostPage = async ({
   };
 }) => {
   const supabase = await createClient();
+
+  const {
+    data: { user: u },
+  } = await supabase.auth.getUser();
+
+  if (!u) {
+    console.log(u, "error");
+    return redirect("/");
+  }
+
   const postId = params.id;
   const fetchPost = async () => {
     const { data } = await supabase.from("posts").select().eq("id", postId);

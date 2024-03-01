@@ -28,7 +28,7 @@ const PhotoModal = async (props: any) => {
         <Link
           href="/app"
           className="absolute top-0 right-0  bg- opacity-50 backdrop-blur-sm bg-neutral-600 rounded-tr-md 
-           p-1 hover:bg-red-700 transition-all duration-300 z-30"
+           p-1 hover:bg-red-600 transition-all duration-300 z-30"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

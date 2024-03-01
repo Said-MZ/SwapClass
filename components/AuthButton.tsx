@@ -33,7 +33,7 @@ export default async function AuthButton() {
       | string
       | undefined) || undefined;
   const name =
-    userName && Array.isArray(userName) ? userName[0].name : undefined;
+    userName && Array.isArray(userName) ? userName[0]?.name : undefined;
   return user ? (
     <div className="flex items-center gap-4">
       Hey, {name}!

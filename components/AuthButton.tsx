@@ -18,13 +18,26 @@ export default async function AuthButton() {
     return redirect("/login");
   };
 
+  const getUserNameByEmail = async (email: string | undefined) => {
+    const { data, error } = await supabase
+      .from("users")
+      .select("name")
+      .eq("email", email);
+    if (error) console.log(error);
+    if (data) {
+      return data;
+    }
+  };
+  const userName =
+    ((await getUserNameByEmail(user ? user.email : undefined)) as
+      | string
+      | undefined) || undefined;
+  const name =
+    userName && Array.isArray(userName) ? userName[0].name : undefined;
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email?.substring(0, user.email?.indexOf("@"))}!
+      Hey, {name}!
       <form action={signOut}>
-        {/* <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
-          Logout
-        </button> */}
         <Btn text="Logout" dark={true} isLink={false} href={null} size="" />
       </form>
     </div>

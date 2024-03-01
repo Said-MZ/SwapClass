@@ -1,22 +1,20 @@
+import { fetchPost, getUserById } from "@/lib";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const PhotoModal = async (props: any) => {
   const id = props.params.id;
   const supabase = createClient();
-  const getUserById = async (id: number) => {
-    const { data, error } = await supabase.from("users").select().eq("id", id);
-    if (error) console.log(error);
-    if (data) {
-      return data;
-    }
-  };
-  const fetchPost = async () => {
-    const { data } = await supabase.from("posts").select().eq("id", id);
-    return data;
-  };
-  const post = (await fetchPost()) as any;
+  const {
+    data: { user: u },
+  } = await supabase.auth.getUser();
+  if (!u) {
+    return redirect("/");
+  }
+
+  const post = (await fetchPost(id)) as any;
   const user = (await getUserById(post[0].user_id)) as any;
   return (
     <div className="w-screen h-screen absolute top-0 left-0 ">

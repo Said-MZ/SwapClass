@@ -1,3 +1,4 @@
+import { fetchPost, getUserById } from "@/lib";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -20,19 +21,8 @@ const SinglePostPage = async ({
   }
 
   const postId = params.id;
-  const fetchPost = async () => {
-    const { data } = await supabase.from("posts").select().eq("id", postId);
-    return data;
-  };
-  const getUserById = async (id: number) => {
-    const { data, error } = await supabase.from("users").select().eq("id", id);
-    if (error) console.log(error);
-    if (data) {
-      return data;
-    }
-  };
 
-  const post = (await fetchPost()) as any;
+  const post = (await fetchPost(postId)) as any;
   const user = (await getUserById(post[0].user_id)) as any;
   console.log(post, user);
 

@@ -1,4 +1,5 @@
 import { CardsSkeleton } from "@/components/skeletons/CardSkeleton";
+import { fetchAllPosts, getUserById } from "@/lib";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -16,46 +17,7 @@ export default async function AppPage() {
     return redirect("/");
   }
 
-  const fetchAllPosts = async () => {
-    const { data } = await supabase.from("posts").select();
-    return data;
-  };
-  const insertPost = async (
-    course_name: string,
-    course_section: string,
-    course_days: string,
-    course_hours: string,
-    exchange_for: string
-  ) => {
-    // select user id using email
-    const { data: userId } = await supabase
-      .from("users")
-      .select("id")
-      .eq("email", user.email);
 
-    const { data, error } = await supabase
-      .from("posts")
-      .insert([
-        {
-          course_name,
-          course_section,
-          course_days,
-          course_hours,
-          exchange_for,
-          user_id: userId ? userId[0].id : null,
-        },
-      ])
-      .select();
-    console.log(data, error);
-  };
-
-  const getUserById = async (id: number) => {
-    const { data, error } = await supabase.from("users").select().eq("id", id);
-    if (error) console.log(error);
-    if (data) {
-      return data;
-    }
-  };
   const posts = (await fetchAllPosts()) as any;
 
   return (
@@ -64,7 +26,9 @@ export default async function AppPage() {
         Explore students' posts
       </h1>
       <Suspense fallback={<CardsSkeleton />}>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div
+          className={`${posts && "grid sm:grid-cols-2 lg:grid-cols-3 gap-4"}`}
+        >
           {posts ? (
             posts.map(async (post: any) => {
               const user = await getUserById(post.user_id);
@@ -118,12 +82,14 @@ export default async function AppPage() {
               );
             })
           ) : (
-            <p>No posts</p>
+            <div>
+              <h1 className="text-xl lg:text-3xl text-neutral-400 !leading-tight mx-auto max-w-[920px] text-center mb-12">
+                No posts yet. Be the first one to post your exchange request!
+              </h1>
+            </div>
           )}
         </div>
       </Suspense>
     </section>
   );
 }
-
-

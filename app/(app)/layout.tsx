@@ -23,8 +23,8 @@ export default function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground antialiased overflow-x-hidden">
         <Navbar />
-        <main className="min-h-screen flex flex-col items-center my-16">
-          <div className="absolute top-0 left-0 inset-0 h-screen w-screen bg-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-[7.5%] -z-10"></div>
+        <main className="min-h-screen flex flex-col items-center my-16 mx-auto w-full">
+          <div className="absolute top-0 left-0 inset-0 h-screen w-screen bg-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-10 -z-10"></div>
           {children}
         </main>
         <Footer />

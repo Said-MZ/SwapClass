@@ -28,10 +28,10 @@ const SinglePostPage = async ({
   return (
     <section>
       <div>
-        <h2 className="capitalize text-4xl font-bold text-center">
+        <h2 className="capitalize text-2xl sm:text-4xl font-bold text-center">
           Posted by: {(user && user[0].name) || "Anonymous"}
         </h2>
-        <p className="text-sm text-neutral-400 flex flex-col justify-around items-start mt-1">
+        <p className="text-xs lg:text-sm text-neutral-400 flex flex-col justify-around items-start mt-1">
           <span>
             <span className="font-semibold text-neutral-300">Email: </span>{" "}
             {user && user[0].email}{" "}
@@ -45,7 +45,7 @@ const SinglePostPage = async ({
       </div>
       <div className=" w-full h-[1px] bg-neutral-800 mb-4"></div>
       <h3 className="capitalize text-3xl font-bold">{post[0].course_name}</h3>
-      <ul className="text-xl mt-2">
+      <ul className=" text-lg sm:text-xl mt-2">
         <li>
           <span className="font-semibold">Section:</span>{" "}
           {post[0].course_section}
@@ -58,7 +58,7 @@ const SinglePostPage = async ({
         </li>
       </ul>
       {post[0].exchange_for && (
-        <p className="text-neutral-400 mt-4 text-lg">
+        <p className="text-neutral-400 mt-4 text-md sm:text-lg">
           <span className="font-semibold text-neutral-100 block">
             Looking to exchange for:{" "}
           </span>

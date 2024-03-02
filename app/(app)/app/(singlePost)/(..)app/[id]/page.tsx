@@ -15,7 +15,8 @@ const PhotoModal = async (props: any) => {
   }
 
   const post = (await fetchPost(id)) as any;
-  const user = (await getUserById(post[0].user_id)) as any;
+  const userId = post ? post[0].user_id : undefined;
+  const user = (await getUserById(userId)) as any;
   return (
     <div className="w-screen h-screen absolute top-0 left-0 ">
       <Link
@@ -57,28 +58,29 @@ const PhotoModal = async (props: any) => {
               <span className="font-semibold text-neutral-300">
                 Posted at:{" "}
               </span>{" "}
-              {post[0] &&
-                new Date(post[0].created_at).toISOString().split("T")[0]}
+              {post && new Date(post[0].created_at).toISOString().split("T")[0]}
             </span>
           </p>
         </div>
         <div className=" w-full h-[1px] bg-neutral-800 mb-4"></div>
         <h3 className="capitalize text-xl sm:text-2xl md:text-3xl font-bold">
-          {post[0].course_name}
+          {post && post[0].course_name}
         </h3>
         <ul className="text-md sm:text-lg md:text-xl mt-2">
           <li>
             <span className="font-semibold">Section:</span>{" "}
-            {post[0].course_section}
+            {post && post[0].course_section}
           </li>
           <li>
-            <span className="font-semibold">Days:</span> {post[0].course_days}
+            <span className="font-semibold">Days:</span>{" "}
+            {post && post[0].course_days}
           </li>
           <li>
-            <span className="font-semibold">Hours:</span> {post[0].course_hours}
+            <span className="font-semibold">Hours:</span>{" "}
+            {post && post[0].course_hours}
           </li>
         </ul>
-        {post[0].exchange_for && (
+        {post && post[0]?.exchange_for && (
           <p className="text-neutral-400 mt-4 text-lg">
             <span className="font-semibold text-neutral-100 block">
               Looking to exchange for:{" "}

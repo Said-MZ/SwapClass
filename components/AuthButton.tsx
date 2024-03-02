@@ -2,6 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import Btn from "./Btn";
+import { getUserByEmail } from "@/lib";
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -18,18 +19,8 @@ export default async function AuthButton() {
     return redirect("/login");
   };
 
-  const getUserNameByEmail = async (email: string | undefined) => {
-    const { data, error } = await supabase
-      .from("users")
-      .select("name")
-      .eq("email", email);
-    if (error) console.log(error);
-    if (data) {
-      return data;
-    }
-  };
   const userName =
-    ((await getUserNameByEmail(user ? user.email : undefined)) as
+    ((await getUserByEmail(user ? user.email : undefined)) as
       | string
       | undefined) || undefined;
   const name =

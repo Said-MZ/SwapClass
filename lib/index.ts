@@ -1,43 +1,70 @@
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 export const fetchAllPosts = async () => {
   const supabase = await createClient();
   const { data } = await supabase.from("posts").select();
   return data;
 };
+
 export const insertPost = async (
   course_name: string,
   course_section: string,
   course_days: string,
   course_hours: string,
-  exchange_for: string,
-  user: { email: string }
+  exchange_for: string
 ) => {
+  "use server";
   const supabase = await createClient();
 
-  // select user id using email
-  const { data: userId } = await supabase
-    .from("users")
-    .select("id")
-    .eq("email", user.email);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  const { data, error } = await supabase
-    .from("posts")
-    .insert([
+  const userDetails: { id: number; name: string }[] | undefined =
+    await getUserByEmail(user?.email);
+  const userId = userDetails?.[0]?.id;
+  if (!user) {
+    return redirect("/login");
+  }
+  if (
+    course_name !== "" &&
+    course_section !== "" &&
+    course_days !== "" &&
+    course_hours !== "" &&
+    exchange_for !== ""
+  ) {
+    const { data, error } = await supabase.from("posts").insert([
       {
         course_name,
         course_section,
         course_days,
         course_hours,
         exchange_for,
-        user_id: userId ? userId[0].id : null,
+        user_id: userId,
       },
-    ])
-    .select();
-  console.log(data, error);
+    ]);
+    if (error) console.log(error);
+    if (data) {
+      return data;
+    }
+  }
 };
 
-export const getUserById = async (id: number) => {
+export const getUserByEmail = async (email: string | undefined) => {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("users")
+    .select("id, name")
+    .eq("email", email);
+  if (error) console.log(error);
+  if (data) {
+    return data;
+  }
+};
+
+export const getUserById = async (id: number | string) => {
   const supabase = await createClient();
 
   const { data, error } = await supabase.from("users").select().eq("id", id);

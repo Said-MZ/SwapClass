@@ -17,7 +17,6 @@ export default async function AppPage() {
     return redirect("/");
   }
 
-
   const posts = (await fetchAllPosts()) as any;
 
   return (

@@ -1,18 +1,15 @@
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
+import PostForm from "@/components/PostForm";
 import React from "react";
 
-const PostPage = async () => {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    console.log(user, "error");
-    return redirect("/");
-  }
-  return <div>PostPage</div>;
+const page = () => {
+  return (
+    <section>
+      <h2 className="text-xl lg:text-3xl font-bold !leading-tight mx-auto max-w-[920px] text-center mb-12">
+        Post your exchange request
+      </h2>
+      <PostForm />
+    </section>
+  );
 };
 
-export default PostPage;
+export default page;

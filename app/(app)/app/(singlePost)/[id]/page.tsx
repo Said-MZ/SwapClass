@@ -1,7 +1,7 @@
 import Btn from "@/components/Btn";
 import DeleteModal from "@/components/DeleteModal";
 import DeletePostBtns from "@/components/DeletePostBtns";
-import { fetchPost, getUserById } from "@/lib";
+import { fetchPost, getUserByEmail, getUserById } from "@/lib";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -26,19 +26,23 @@ const SinglePostPage = async ({
   const postId = params.id;
 
   const post = (await fetchPost(postId)) as any;
-  const user = (await getUserById(post[0].user_id)) as any;
-  console.log(post, user);
+  const postUser = (await getUserById(post[0].user_id)) as any;
+  const userViewingPage: any = await getUserByEmail(u.email);
+
+  const isPostOwner = postUser[0]?.id === userViewingPage?.[0]?.id;
+  console.log(isPostOwner, "isPostOwner");
+
   const handleDelete = async () => {};
   return (
     <section className="max-w-[1200px] px-8">
       <div>
         <h2 className="capitalize text-2xl sm:text-4xl font-bold text-center">
-          Posted by: {(user && user[0].name) || "Anonymous"}
+          Posted by: {(postUser && postUser[0].name) || "Anonymous"}
         </h2>
         <p className="text-xs lg:text-sm text-neutral-400 flex flex-col justify-around items-start mt-1">
           <span>
             <span className="font-semibold text-neutral-300">Email: </span>{" "}
-            {user && user[0].email}{" "}
+            {postUser && postUser[0].email}{" "}
           </span>
           <span>
             <span className="font-semibold text-neutral-300">Posted at: </span>{" "}
@@ -69,8 +73,7 @@ const SinglePostPage = async ({
           {post[0].exchange_for}
         </p>
       )}
-
-      <DeletePostBtns />
+      {isPostOwner && <DeletePostBtns />}
 
       <DeleteModal />
     </section>

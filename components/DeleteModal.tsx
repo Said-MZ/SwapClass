@@ -8,10 +8,7 @@ const DeleteModal = () => {
   return (
     <div>
       {isModalOpen && (
-        <div
-          className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center"
-          onClick={hideModal}
-        >
+        <div className="fixed z-50 inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-neutral-900 p-8 rounded-md">
             <h2 className="text-2xl font-bold text-center">
               Are you sure you want to delete this post?

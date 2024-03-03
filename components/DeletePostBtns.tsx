@@ -5,7 +5,7 @@ import Btn from "./Btn";
 import { useDeleteModal } from "@/app/context/deleteModalContext";
 
 const DeletePostBtns = () => {
-  const { isModalOpen, showModal, hideModal }: any = useDeleteModal();
+  const { isModalOpen, showModal }: any = useDeleteModal();
 
   return (
     <div className="flex gap-4 mt-8">

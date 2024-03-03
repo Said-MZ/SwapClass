@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const deleteModalContext = createContext({});
 
 const DeleteModalProvider = ({ children }: { children: React.ReactNode }) => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const showModal = () => {
     console.log("showModal");
 

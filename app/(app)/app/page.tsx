@@ -36,7 +36,7 @@ export default async function AppPage() {
 
               return (
                 <Link
-                  href={`/app/${post.id}`}
+                  href={`/app/posts/${post.id}`}
                   key={post.id}
                   className="flex flex-col gap-2  backdrop-blur-[1px] p-4 border-2 rounded-md sm:hover:brightness-125 sm:hover:-translate-y-1 sm:hover:border-neutral-600 transition-all duration-200"
                 >

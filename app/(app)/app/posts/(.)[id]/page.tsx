@@ -94,7 +94,7 @@ const PhotoModal = async (props: any) => {
             {post[0].exchange_for}
           </p>
         )}
-        {isPostOwner && <DeletePostBtns />}
+        {isPostOwner && <DeletePostBtns id={id}/>}
 
         <DeleteModal postId={post[0].id} />
       </section>

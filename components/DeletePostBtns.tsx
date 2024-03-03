@@ -4,7 +4,7 @@ import React from "react";
 import Btn from "./Btn";
 import { useDeleteModal } from "@/app/context/deleteModalContext";
 
-const DeletePostBtns = () => {
+const DeletePostBtns = ({ id }: { id: string }) => {
   const { showModal }: any = useDeleteModal();
 
   return (
@@ -13,7 +13,7 @@ const DeletePostBtns = () => {
         text="Edit"
         isLink={true}
         dark={true}
-        href={"/app/edit"}
+        href={`/app/edit/${id}`}
         size="w-full"
       />
       <Btn

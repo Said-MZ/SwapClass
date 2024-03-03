@@ -4,7 +4,6 @@ import React from "react";
 import Btn from "./Btn";
 import { useDeleteModal } from "@/app/context/deleteModalContext";
 import { deletePost } from "@/lib";
-import { useRouter } from "next/navigation";
 
 const DeleteModal = ({ postId }: { postId: number }) => {
   const { isModalOpen, hideModal }: any = useDeleteModal();

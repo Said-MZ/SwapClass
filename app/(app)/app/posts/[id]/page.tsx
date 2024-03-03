@@ -72,7 +72,7 @@ const SinglePostPage = async ({
           {post[0].exchange_for}
         </p>
       )}
-      {isPostOwner && <DeletePostBtns />}
+      {isPostOwner && <DeletePostBtns id={postId} />}
 
       <DeleteModal postId={post[0].id} />
     </section>

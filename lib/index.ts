@@ -53,6 +53,32 @@ export const insertPost = async (
   }
 };
 
+export const editPost = async (
+  postId: number,
+  course_name: string,
+  course_section: string,
+  course_days: string,
+  course_hours: string,
+  exchange_for: string
+) => {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("posts")
+    .update({
+      course_name,
+      course_section,
+      course_days,
+      course_hours,
+      exchange_for,
+    })
+    .eq("id", postId);
+  if (error) console.log(error);
+  if (data) {
+    return data;
+  }
+};
+
 export const getUserByEmail = async (email: string | undefined) => {
   const supabase = await createClient();
 

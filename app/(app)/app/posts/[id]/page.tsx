@@ -29,7 +29,6 @@ const SinglePostPage = async ({
   const userViewingPage: any = await getUserByEmail(u.email);
 
   const isPostOwner = postUser[0]?.id === userViewingPage?.[0]?.id;
-  console.log(isPostOwner, "isPostOwner");
 
   return (
     <section className="max-w-[1200px] px-8">

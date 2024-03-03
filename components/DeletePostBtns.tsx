@@ -9,7 +9,13 @@ const DeletePostBtns = () => {
 
   return (
     <div className="flex gap-4 mt-8">
-      <Btn text="Edit" isLink={false} dark={true} href={null} size="w-full" />
+      <Btn
+        text="Edit"
+        isLink={true}
+        dark={true}
+        href={"/app/edit"}
+        size="w-full"
+      />
       <Btn
         text="Delete"
         isLink={false}

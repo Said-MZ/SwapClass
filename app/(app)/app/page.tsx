@@ -21,6 +21,8 @@ export default async function AppPage() {
 
   return (
     <section className="w-full max-w-[1200px] px-8">
+      <Link href="/app/post">Create a post</Link>
+
       <h1 className="text-xl lg:text-3xl font-bold !leading-tight mx-auto max-w-[920px] text-center mb-12">
         Explore students' posts
       </h1>

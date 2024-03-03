@@ -1,3 +1,6 @@
+import Btn from "@/components/Btn";
+import DeleteModal from "@/components/DeleteModal";
+import DeletePostBtns from "@/components/DeletePostBtns";
 import { fetchPost, getUserById } from "@/lib";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
@@ -25,9 +28,9 @@ const SinglePostPage = async ({
   const post = (await fetchPost(postId)) as any;
   const user = (await getUserById(post[0].user_id)) as any;
   console.log(post, user);
-
+  const handleDelete = async () => {};
   return (
-    <section>
+    <section className="max-w-[1200px] px-8">
       <div>
         <h2 className="capitalize text-2xl sm:text-4xl font-bold text-center">
           Posted by: {(user && user[0].name) || "Anonymous"}
@@ -66,6 +69,10 @@ const SinglePostPage = async ({
           {post[0].exchange_for}
         </p>
       )}
+
+      <DeletePostBtns />
+
+      <DeleteModal />
     </section>
   );
 };

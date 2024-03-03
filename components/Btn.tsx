@@ -7,12 +7,14 @@ const Btn = ({
   isLink,
   href,
   size,
+  onClick,
 }: {
   text: string;
   dark: boolean;
   isLink: boolean;
   href: string | null;
   size: string;
+  onClick?: () => void;
 }) => {
   return isLink ? (
     <Link
@@ -27,6 +29,7 @@ const Btn = ({
     </Link>
   ) : (
     <button
+      onClick={onClick}
       className={`${
         dark
           ? "bg-neutral-900 text-neutral-50  border-neutral-800"

@@ -32,7 +32,6 @@ const SinglePostPage = async ({
   const isPostOwner = postUser[0]?.id === userViewingPage?.[0]?.id;
   console.log(isPostOwner, "isPostOwner");
 
-  const handleDelete = async () => {};
   return (
     <section className="max-w-[1200px] px-8">
       <div>

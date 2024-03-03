@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const fetchAllPosts = async () => {
@@ -91,5 +92,6 @@ export const deletePost = async (postId: number) => {
     .delete()
     .eq("id", postId);
 
-  console.log(data, error);
+  revalidatePath("/app");
+  redirect("/app");
 };

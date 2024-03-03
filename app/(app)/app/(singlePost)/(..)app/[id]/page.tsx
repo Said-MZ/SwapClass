@@ -1,4 +1,6 @@
-import { fetchPost, getUserById } from "@/lib";
+import DeleteModal from "@/components/DeleteModal";
+import DeletePostBtns from "@/components/DeletePostBtns";
+import { fetchPost, getUserByEmail, getUserById } from "@/lib";
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -16,7 +18,11 @@ const PhotoModal = async (props: any) => {
 
   const post = (await fetchPost(id)) as any;
   const userId = post ? post[0].user_id : undefined;
-  const user = (await getUserById(userId)) as any;
+  const postUser = (await getUserById(userId)) as any;
+  const userViewingPage: any = await getUserByEmail(u.email);
+
+  const isPostOwner = postUser[0]?.id === userViewingPage?.[0]?.id;
+
   return (
     <div className="w-screen h-screen absolute top-0 left-0 ">
       <Link
@@ -47,12 +53,12 @@ const PhotoModal = async (props: any) => {
         </Link>
         <div>
           <h2 className="capitalize text-xl md:text-2xl lg:text-4xl font-bold text-center">
-            Posted by: {(user && user[0].name) || "Anonymous"}
+            Posted by: {(postUser && postUser[0].name) || "Anonymous"}
           </h2>
           <p className="text-xs lg:text-sm flex-wrap text-neutral-400 flex justify-start gap-6 items-center my-4">
             <span>
               <span className="font-semibold text-neutral-300">Email: </span>{" "}
-              {user && user[0].email}{" "}
+              {postUser && postUser[0].email}{" "}
             </span>
             <span>
               <span className="font-semibold text-neutral-300">
@@ -88,6 +94,9 @@ const PhotoModal = async (props: any) => {
             {post[0].exchange_for}
           </p>
         )}
+        {isPostOwner && <DeletePostBtns />}
+
+        <DeleteModal postId={post[0].id} />
       </section>
     </div>
   );

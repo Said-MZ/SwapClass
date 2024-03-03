@@ -3,8 +3,15 @@
 import React from "react";
 import Btn from "./Btn";
 import { useDeleteModal } from "@/app/context/deleteModalContext";
-const DeleteModal = () => {
-  const { isModalOpen, showModal, hideModal }: any = useDeleteModal();
+import { deletePost } from "@/lib";
+import { useRouter } from "next/navigation";
+const DeleteModal = ({ postId }: { postId: number }) => {
+  const { isModalOpen, hideModal }: any = useDeleteModal();
+  const router = useRouter();
+  const handleDelete = async () => {
+    await deletePost(postId);
+    router.push("/app");
+  };
   return (
     <div>
       {isModalOpen && (
@@ -15,14 +22,15 @@ const DeleteModal = () => {
             </h2>
             <div className="flex justify-around items-center mt-4 gap-4">
               <Btn
-                text="Yes"
+                text="Delete"
                 isLink={false}
                 dark={false}
                 href={null}
                 size="w-full"
+                onClick={handleDelete}
               />
               <Btn
-                text="No"
+                text="Cancel"
                 isLink={false}
                 dark={true}
                 href={null}

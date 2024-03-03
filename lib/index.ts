@@ -1,3 +1,5 @@
+"use server";
+
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -14,7 +16,6 @@ export const insertPost = async (
   course_hours: string,
   exchange_for: string
 ) => {
-  "use server";
   const supabase = await createClient();
 
   const {
@@ -79,4 +80,16 @@ export const fetchPost = async (postId: string) => {
 
   const { data } = await supabase.from("posts").select().eq("id", postId);
   return data;
+};
+
+export const deletePost = async (postId: number) => {
+  const supabase = await createClient();
+
+  // delete post (whole row) by id
+  const { data, error } = await supabase
+    .from("posts")
+    .delete()
+    .eq("id", postId);
+
+  console.log(data, error);
 };

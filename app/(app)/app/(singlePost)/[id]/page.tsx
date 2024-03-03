@@ -75,7 +75,7 @@ const SinglePostPage = async ({
       )}
       {isPostOwner && <DeletePostBtns />}
 
-      <DeleteModal />
+      <DeleteModal postId={post[0].id} />
     </section>
   );
 };

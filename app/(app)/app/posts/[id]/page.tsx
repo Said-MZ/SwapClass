@@ -1,4 +1,3 @@
-import Btn from "@/components/Btn";
 import DeleteModal from "@/components/DeleteModal";
 import DeletePostBtns from "@/components/DeletePostBtns";
 import { fetchPost, getUserByEmail, getUserById } from "@/lib";

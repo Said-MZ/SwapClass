@@ -5,7 +5,7 @@ import Btn from "./Btn";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col gap-16 items-center">
+    <div className="flex flex-col gap-16 items-center px-4">
       <div className="flex gap-8 justify-center items-center">
         <a href="https://www.psut.edu.jo" target="_blank" rel="noreferrer">
           <Image
@@ -20,12 +20,14 @@ const Hero = () => {
       </div>
       <div>
         <h1 className="text-xl lg:text-3xl font-bold !leading-tight mx-auto max-w-[920px] text-center mb-6">
-          Upgrade Your{" "}
-          <span className=" bg-gradient-to-r from-neutral-50 to-transparent pl-1 pr-6 rounded-md text-neutral-900">
-            Schedule:
+          <span className="t text-nowrap block">
+            Upgrade Your{" "}
+            <span className=" bg-gradient-to-r from-neutral-50 to-transparent pl-1 pr-6 rounded-md text-neutral-900">
+              Schedule:
+            </span>
           </span>
           Effortlessly Swap Courses & Sections with{" "}
-          <span className=" bg-gradient-to-r from-neutral-50 to-transparent pl-1 pr-4 rounded-md text-neutral-900">
+          <span className=" bg-gradient-to-r from-neutral-50 to-transparent pl-1 pr-5 text-nowrap rounded-md text-neutral-900">
             Ease !
           </span>
         </h1>

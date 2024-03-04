@@ -24,12 +24,12 @@ const PhotoModal = async (props: any) => {
   const isPostOwner = postUser[0]?.id === userViewingPage?.[0]?.id;
 
   return (
-    <div className="w-screen h-screen absolute top-0 left-0 ">
+    <div className="w-screen h-screen absolute top-0 left-0 grid place-items-center px-12">
       <Link
         href="/app"
-        className="absolute w-screen h-screen bg- opacity-50 backdrop-blur-sm z-10"
+        className="absolute w-screen h-screen bg-neutral-950 opacity-75 z-10"
       ></Link>
-      <section className="w-11/12 sm:w-3/4 md:w-2/4 h-3/4 backdrop-blur-md backdrop-brightness-125 border-2 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 p-8 rounded-md">
+      <section className="w-full sm:w-3/4  backdrop-blur-md backdrop-brightness-125 border-2  relative z-50 p-8 rounded-md">
         {/* <Suspense fallback={<ModalSkeleton />}> */}
         {/* using suspense disables the intercepted modal for some reason so this will be commented unil i find a solution */}
         <Link

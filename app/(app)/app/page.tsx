@@ -25,7 +25,7 @@ export default async function AppPage() {
     <section className="w-full max-w-[1200px] px-8">
       <div className="w-full mx-auto text-center mb-12">
         <Btn
-          text="Post your exchange request"
+          text="Post exchange request"
           href="/app/post"
           isLink={true}
           dark={false}

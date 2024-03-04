@@ -27,7 +27,7 @@ export default async function AuthButton() {
     userName && Array.isArray(userName) ? userName[0]?.name : undefined;
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {name}!
+      <span className="hidden sm:block">Hey, {name}!</span>
       <form action={signOut}>
         <Btn text="Logout" dark={true} isLink={false} href={null} size="" />
       </form>

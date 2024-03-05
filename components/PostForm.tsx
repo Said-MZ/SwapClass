@@ -2,6 +2,7 @@ import { insertPost } from "@/lib";
 import React from "react";
 import Btn from "./Btn";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 const PostForm = () => {
   const post = async (formData: FormData) => {
@@ -11,14 +12,20 @@ const PostForm = () => {
     const course_days = (await formData.get("course_days")) as string;
     const course_hours = (await formData.get("course_hours")) as string;
     const exchange_for = (await formData.get("exchange_for")) as string;
-
-    insertPost(
-      course_name,
-      course_section,
-      course_days,
-      course_hours,
-      exchange_for
-    );
+    if (
+      course_name.trim() === "" ||
+      course_section.trim() === "" ||
+      course_days.trim() === "" ||
+      course_hours.trim() === ""
+    ) {
+      insertPost(
+        course_name.trim(),
+        course_section.trim(),
+        course_days.trim(),
+        course_hours.trim(),
+        exchange_for.trim()
+      );
+    }
 
     return redirect("/app");
   };
@@ -35,6 +42,7 @@ const PostForm = () => {
           Course Name
         </label>
         <input
+          required
           placeholder="Course Name"
           type="text"
           name="course_name"
@@ -51,6 +59,7 @@ const PostForm = () => {
             Course Section
           </label>
           <input
+            required
             placeholder="1"
             type="text"
             name="course_section"
@@ -66,6 +75,7 @@ const PostForm = () => {
             Course Days
           </label>
           <input
+            required
             placeholder="s-t-t"
             type="text"
             name="course_days"
@@ -81,6 +91,7 @@ const PostForm = () => {
             Course Hours
           </label>
           <input
+            required
             placeholder="12:00 - 2:00"
             type="text"
             name="course_hours"

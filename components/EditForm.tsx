@@ -47,6 +47,7 @@ const EditForm = ({
           Course Name
         </label>
         <input
+          required
           placeholder="Course Name"
           type="text"
           name="course_name"
@@ -64,6 +65,7 @@ const EditForm = ({
             Course Section
           </label>
           <input
+            required
             placeholder="1"
             type="text"
             name="course_section"
@@ -80,6 +82,7 @@ const EditForm = ({
             Course Days
           </label>
           <input
+            required
             placeholder="s-t-t"
             type="text"
             name="course_days"
@@ -96,6 +99,7 @@ const EditForm = ({
             Course Hours
           </label>
           <input
+            required
             placeholder="12:00 - 2:00"
             type="text"
             name="course_hours"

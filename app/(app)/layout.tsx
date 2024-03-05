@@ -3,6 +3,7 @@ import "@/app/globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { DeleteModalProvider } from "../context/deleteModalContext";
+import { Toaster, toast } from "sonner";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -24,6 +25,7 @@ export default function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground antialiased overflow-x-hidden">
         <DeleteModalProvider>
+          <Toaster />
           <div className="absolute top-0 left-0 inset-0 h-screen w-screen bg-black bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-[.125] -z-10">
             <div className="h-full bg-gradient-to-b from-transparent via-transparent to-black"></div>
           </div>

@@ -4,6 +4,7 @@ import React from "react";
 import Btn from "./Btn";
 import { useDeleteModal } from "@/app/context/deleteModalContext";
 import { deletePost } from "@/lib";
+import { toast } from "sonner";
 
 const DeleteModal = ({ postId }: { postId: number }) => {
   const { isModalOpen, hideModal }: any = useDeleteModal();
@@ -11,6 +12,7 @@ const DeleteModal = ({ postId }: { postId: number }) => {
   const handleDelete = async () => {
     await deletePost(postId);
     hideModal();
+    toast.success("Post deleted successfully");
   };
   return (
     <div>

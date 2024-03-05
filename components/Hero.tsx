@@ -1,9 +1,16 @@
 import Image from "next/image";
 import psutLogo from "@/app/psut-logo.png";
 import Logo from "./Logo";
-import Btn from "./Btn";
+import HeroBtns from "./HeroBtns";
+import { createClient } from "@/utils/supabase/server";
 
-const Hero = () => {
+const Hero = async () => {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const isLoggedIn = user ? true : false;
+
   return (
     <div className="flex flex-col gap-16 items-center px-4">
       <div className="flex gap-8 justify-center items-center">
@@ -46,22 +53,7 @@ const Hero = () => {
           sections closed to quick? SwapClass is your one-stop shop for seamless
           course exchanges.
         </p>
-        <div className="mt-10 flex gap-4 justify-center items-center">
-          <Btn
-            text={"Get started"}
-            dark={true}
-            isLink={true}
-            href={"/app"}
-            size={"text-md lg:text-xl"}
-          />
-          <Btn
-            text={"Sign up"}
-            dark={false}
-            isLink={true}
-            href={"/login"}
-            size={"text-md lg:text-xl"}
-          />
-        </div>
+        <HeroBtns isLoggedIn={isLoggedIn} />
       </div>
 
       <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-neutral-400 to-transparent my-8" />

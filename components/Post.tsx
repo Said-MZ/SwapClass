@@ -3,22 +3,27 @@ import { getUserById } from "@/lib";
 
 interface PostProps {
   post: any;
-  userId: any;
+  userEmail: string;
 }
 
-const Post: React.FC<PostProps> = async ({ post }) => {
+const Post: React.FC<PostProps> = async ({ post, userEmail }) => {
   const user = await getUserById(post.user_id);
 
   const date = new Date(post.created_at).toISOString().split("T")[0];
   const name = user ? user[0]?.name : "Anonymous";
   const email = user ? user[0].email : "";
-
+  const isUser = email === userEmail;
   return (
     <Link
       href={`/app/posts/${post.id}`}
       key={post.id}
       className="flex flex-col gap-2  backdrop-blur-[1px] p-4 border-2 rounded-md sm:hover:brightness-125 sm:hover:-translate-y-1 sm:hover:border-neutral-600 transition-all duration-200"
     >
+      {isUser && (
+        <div className="absolute top-1 right-1 bg-neutral-800 text-neutral-100 font-bold px-3 py-2 rounded-md text-xs">
+          Click to Edit Post
+        </div>
+      )}
       <div>
         <h2 className="capitalize text-lg font-bold">{name}</h2>
         <p className="text-xs text-neutral-400">

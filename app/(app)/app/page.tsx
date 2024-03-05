@@ -48,7 +48,9 @@ export default async function AppPage() {
         >
           {posts ? (
             posts.map((post: any) => {
-              return <Post post={post} key={post.id} userId={post.user_id} />;
+              return (
+                <Post post={post} key={post.id} userEmail={user.email || ""} />
+              );
             })
           ) : (
             <div>

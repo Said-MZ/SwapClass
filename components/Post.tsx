@@ -17,7 +17,7 @@ const Post: React.FC<PostProps> = async ({ post, userEmail }) => {
     <Link
       href={`/app/posts/${post.id}`}
       key={post.id}
-      className="flex flex-col gap-2  backdrop-blur-[1px] p-4 border-2 rounded-md sm:hover:brightness-125 sm:hover:-translate-y-1 sm:hover:border-neutral-600 transition-all duration-200"
+      className="relative flex flex-col gap-2  backdrop-blur-[1px] p-4 border-2 rounded-md sm:hover:brightness-125 sm:hover:-translate-y-1 sm:hover:border-neutral-600 transition-all duration-200"
     >
       {isUser && (
         <div className="absolute top-1 right-1 bg-neutral-800 text-neutral-100 font-bold px-3 py-2 rounded-md text-xs">

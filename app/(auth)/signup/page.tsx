@@ -56,7 +56,9 @@ export default function Signup({
       .insert([{ id: stdId, name, email }])
       .select();
 
-    return redirect("/signup?message=Check email to continue sign in process");
+    return redirect(
+      "/signup?message=Account created successfully. Please login to continue."
+    );
   };
 
   return (

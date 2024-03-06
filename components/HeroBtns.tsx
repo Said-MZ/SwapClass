@@ -12,7 +12,7 @@ const HeroBtns = async ({ isLoggedIn }: { isLoggedIn: boolean }) => {
         dark={!isLoggedIn}
         isLink={isLoggedIn}
         href={"/app"}
-        size={"text-md lg:text-xl"}
+        style={"text-md lg:text-xl"}
         onClick={() => {
           if (!isLoggedIn) {
             toast.error("You need to be logged in to access this page");
@@ -25,7 +25,7 @@ const HeroBtns = async ({ isLoggedIn }: { isLoggedIn: boolean }) => {
           dark={false}
           isLink={true}
           href={"/login"}
-          size={"text-md lg:text-xl"}
+          style={"text-md lg:text-xl"}
         />
       )}
     </div>

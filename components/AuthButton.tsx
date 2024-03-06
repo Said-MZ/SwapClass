@@ -29,7 +29,7 @@ export default async function AuthButton() {
     <div className="flex items-center gap-4">
       <span className="hidden sm:block">Hey, {name}!</span>
       <form action={signOut}>
-        <Btn text="Logout" dark={true} isLink={false} href={null} size="" />
+        <Btn text="Logout" dark={true} isLink={false} href={null} style="" />
       </form>
     </div>
   ) : (

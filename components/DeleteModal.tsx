@@ -28,7 +28,7 @@ const DeleteModal = ({ postId }: { postId: number }) => {
                 isLink={false}
                 dark={false}
                 href={null}
-                size="w-full"
+                style="w-full"
                 onClick={handleDelete}
               />
               <Btn
@@ -36,7 +36,7 @@ const DeleteModal = ({ postId }: { postId: number }) => {
                 isLink={false}
                 dark={true}
                 href={null}
-                size="w-full"
+                style="w-full"
                 onClick={hideModal}
               />
             </div>

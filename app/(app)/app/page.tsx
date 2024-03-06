@@ -29,7 +29,7 @@ export default async function AppPage() {
           href="/app/post"
           isLink={true}
           dark={false}
-          size="w-full"
+          style="w-full"
         />
       </div>
 

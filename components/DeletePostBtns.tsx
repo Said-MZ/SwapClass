@@ -14,14 +14,14 @@ const DeletePostBtns = ({ id }: { id: string }) => {
         isLink={true}
         dark={true}
         href={`/app/edit/${id}`}
-        size="w-full"
+        style="w-full"
       />
       <Btn
         text="Delete"
         isLink={false}
         dark={false}
         href={null}
-        size="w-full"
+        style="w-full"
         onClick={showModal}
       />
     </div>

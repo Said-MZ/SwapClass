@@ -1,3 +1,4 @@
+import Btn from "@/components/Btn";
 import DeleteModal from "@/components/DeleteModal";
 import DeletePostBtns from "@/components/DeletePostBtns";
 import PostSkeleton from "@/components/skeletons/PostSkeleton";
@@ -33,10 +34,10 @@ const SinglePostPage = async ({
   const isPostOwner = postUser[0]?.id === userViewingPage?.[0]?.id;
 
   return (
-    <section className="max-w-[1200px] px-8">
+    <section className="max-w-[768px] px-8">
       <Suspense fallback={<PostSkeleton />}>
         <div>
-          <h2 className="capitalize text-2xl sm:text-4xl font-bold text-center">
+          <h2 className="capitalize text-2xl sm:text-4xl font-bold text-center mb-6">
             Posted by: {(postUser && postUser[0].name) || "Anonymous"}
           </h2>
           <p className="text-xs lg:text-sm text-neutral-400 flex flex-col justify-around items-start mt-1">
@@ -78,6 +79,15 @@ const SinglePostPage = async ({
         {isPostOwner && <DeletePostBtns id={postId} />}
 
         <DeleteModal postId={post[0].id} />
+        <div className="mt-6 w-full">
+          <Btn
+            isLink={true}
+            text="Back to all posts"
+            dark={true}
+            href={"/app"}
+            style="block mx-auto bg-transparent border-transparent"
+          />
+        </div>
       </Suspense>
     </section>
   );

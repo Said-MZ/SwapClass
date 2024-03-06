@@ -1,8 +1,6 @@
 import { insertPost } from "@/lib";
 import React from "react";
-import Btn from "./Btn";
 import { redirect } from "next/navigation";
-import { toast } from "sonner";
 import { SubmitButton } from "@/app/(auth)/submit-button";
 
 const PostForm = () => {
@@ -14,10 +12,10 @@ const PostForm = () => {
     const course_hours = (await formData.get("course_hours")) as string;
     const exchange_for = (await formData.get("exchange_for")) as string;
     if (
-      course_name.trim() === "" ||
-      course_section.trim() === "" ||
-      course_days.trim() === "" ||
-      course_hours.trim() === ""
+      course_name.trim() !== "" &&
+      course_section.trim() !== "" &&
+      course_days.trim() !== "" &&
+      course_hours.trim() !== ""
     ) {
       insertPost(
         course_name.trim(),
@@ -31,10 +29,7 @@ const PostForm = () => {
     return redirect("/app");
   };
   return (
-    <form
-      action={post}
-      className="w-full bg-transparent shadow-md rounded px-8 pt-6 pb-8 mb-4"
-    >
+    <form className="w-full bg-transparent shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div className="mb-4 w-full">
         <label
           htmlFor="course_name"

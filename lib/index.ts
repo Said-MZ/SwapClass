@@ -48,6 +48,8 @@ export const insertPost = async (
     ]);
     if (error) console.log(error);
     if (data) {
+      console.log(data);
+      
       return data;
     }
   }

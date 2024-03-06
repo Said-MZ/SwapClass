@@ -126,6 +126,7 @@ export default function Signup({
         <SubmitButton
           formAction={signUp}
           pendingText="Signing Up..."
+          toastText={"Signed Up"}
           className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2 font-semibold  hover:brightness-75 transition-all duration-200"
         >
           Sign Up

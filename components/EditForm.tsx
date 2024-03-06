@@ -2,6 +2,7 @@ import { editPost, insertPost } from "@/lib";
 import React from "react";
 import Btn from "./Btn";
 import { redirect } from "next/navigation";
+import { SubmitButton } from "@/app/(auth)/submit-button";
 
 const EditForm = ({
   postData,
@@ -127,13 +128,14 @@ const EditForm = ({
         />
       </div>
 
-      <Btn
-        text="Submit"
-        dark={false}
-        isLink={false}
-        href={null}
-        size="w-full"
-      />
+      <SubmitButton
+        formAction={edit}
+        className="bg-neutral-50 text-neutral-900 border-neutral-200 font-semibold px-5 py-3 rounded-md hover:brightness-75 transition-all duration-200 border-[1px] text-center text-nowrap w-full"
+        pendingText="Submitting Changes..."
+        toastText={"Changes Submitted!"}
+      >
+        Submit Changes
+      </SubmitButton>
     </form>
   );
 };

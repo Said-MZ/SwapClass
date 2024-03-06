@@ -76,6 +76,7 @@ export default function Login({
           formAction={signIn}
           className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
           pendingText="Signing In..."
+          toastText={"Signed In"}
         >
           Sign In
         </SubmitButton>

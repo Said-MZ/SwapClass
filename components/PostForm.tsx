@@ -3,6 +3,7 @@ import React from "react";
 import Btn from "./Btn";
 import { redirect } from "next/navigation";
 import { toast } from "sonner";
+import { SubmitButton } from "@/app/(auth)/submit-button";
 
 const PostForm = () => {
   const post = async (formData: FormData) => {
@@ -50,7 +51,7 @@ const PostForm = () => {
           className="bg-transparent backdrop-blur-sm focus:outline-4 shadow appearance-none border rounded w-full py-2 px-3 text-neutral-100 leading-tight focus:outline-neutral-600 focus:shadow-outline"
         />
       </div>
-      <div className="flex gap-x-4">
+      <div className="grid md:grid-cols-3 grid-cols-2 gap-x-4">
         <div className="mb-4 w-full">
           <label
             htmlFor="course_section"
@@ -83,7 +84,7 @@ const PostForm = () => {
             className="bg-transparent backdrop-blur-sm focus:outline-4 shadow appearance-none border rounded w-full py-2 px-3 text-neutral-100 leading-tight focus:outline-neutral-600 focus:shadow-outline"
           />
         </div>
-        <div className="mb-4 w-full">
+        <div className="mb-4 w-full col-span-2 md:col-span-1">
           <label
             htmlFor="course_hours"
             className="block text-neutral-100 text-sm font-bold mb-2"
@@ -117,13 +118,14 @@ const PostForm = () => {
         />
       </div>
 
-      <Btn
-        text="Submit"
-        dark={false}
-        isLink={false}
-        href={null}
-        size="w-full"
-      />
+      <SubmitButton
+        formAction={post}
+        className="bg-neutral-50 text-neutral-900 border-neutral-200 font-semibold px-5 py-3 rounded-md hover:brightness-75 transition-all duration-200 border-[1px] text-center text-nowrap w-full"
+        pendingText="Posting..."
+        toastText={"Posted!"}
+      >
+        Post
+      </SubmitButton>
     </form>
   );
 };

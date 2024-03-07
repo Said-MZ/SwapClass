@@ -17,7 +17,7 @@ const Footer = () => {
           <ul className="flex justify-between items-center w-full mt-2">
             <li>
               <Link
-                href="https://www.gtihub.com/said-mz/"
+                href="https://github.com/Said-MZ/"
                 className="hover:opacity-60 transition-all duration-300"
               >
                 <FaGithub className="w-8 h-8" />
@@ -122,14 +122,14 @@ const Footer = () => {
       <div className="mt-8 border-t-[1px] pt-6 border-neutral-900">
         <p>
           Made with {"</>"} by{" "}
-          <a
+          <Link
             href="https://www.linkedin.com/in/said-mz/"
             target="_blank"
             className="font-bold hover:underline"
             rel="noreferrer"
           >
             Said-MZ
-          </a>
+          </Link>
         </p>
       </div>
     </footer>

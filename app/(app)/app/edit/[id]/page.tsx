@@ -5,16 +5,16 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const EditPage = async ({ params: { id } }: { params: { id: string } }) => {
-    const supabase = await createClient();
+  const supabase = await createClient();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-    if (!user) {
-      console.log(user, "error");
-      return redirect("/");
-    }
+  if (!user) {
+    console.log(user, "error");
+    return redirect("/");
+  }
   const post = await fetchPost(id);
 
   return (

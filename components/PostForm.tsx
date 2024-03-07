@@ -2,6 +2,7 @@ import { insertPost } from "@/lib";
 import React from "react";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "@/app/(auth)/submit-button";
+import Btn from "./Btn";
 
 const PostForm = () => {
   const post = async (formData: FormData) => {
@@ -112,15 +113,23 @@ const PostForm = () => {
           className="bg-transparent backdrop-blur-sm focus:outline-4 shadow appearance-none border rounded w-full py-2 px-3 text-neutral-100 leading-tight focus:outline-neutral-600 focus:shadow-outline resize-y"
         />
       </div>
-
-      <SubmitButton
-        formAction={post}
-        className="bg-neutral-50 text-neutral-900 border-neutral-200 font-semibold px-5 py-3 rounded-md hover:brightness-75 transition-all duration-200 border-[1px] text-center text-nowrap w-full"
-        pendingText="Posting..."
-        toastText={"Posted!"}
-      >
-        Post
-      </SubmitButton>
+      <div className="flex gap-4">
+        <SubmitButton
+          formAction={post}
+          className="bg-neutral-50 text-neutral-900 border-neutral-200 font-semibold px-5 py-3 rounded-md hover:brightness-75 transition-all duration-200 border-[1px] text-center text-nowrap w-full"
+          pendingText="Posting..."
+          toastText={"Posted!"}
+        >
+          Post
+        </SubmitButton>
+        <Btn
+          isLink={true}
+          text="Cancel"
+          dark={true}
+          href={"/app"}
+          style="w-full"
+        />
+      </div>
     </form>
   );
 };

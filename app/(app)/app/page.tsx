@@ -22,7 +22,7 @@ export default async function AppPage() {
   const posts = (await fetchAllPosts()) as any;
 
   return (
-    <section className="w-full max-w-[1200px] px-8">
+    <section className="w-full max-w-[1200px] px-4 md:px-8">
       <div className="w-full mx-auto text-center mb-12">
         <Btn
           text="Post exchange request"

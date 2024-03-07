@@ -127,7 +127,7 @@ const EditForm = ({
           defaultValue={postData.exchange_for}
         />
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-col sm:flex-row">
         <SubmitButton
           formAction={edit}
           className="bg-neutral-50 text-neutral-900 border-neutral-200 font-semibold px-5 py-3 rounded-md hover:brightness-75 transition-all duration-200 border-[1px] text-center text-nowrap w-full"

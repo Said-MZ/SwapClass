@@ -46,16 +46,17 @@ export default async function AppPage() {
         <div
           className={`${posts && "grid sm:grid-cols-2 lg:grid-cols-3 gap-4"}`}
         >
-          {posts ? (
+          {posts.length > 0 ? (
             posts.map((post: any) => {
               return (
                 <Post post={post} key={post.id} userEmail={user.email || ""} />
               );
             })
           ) : (
-            <div>
-              <h1 className="text-xl lg:text-3xl text-neutral-400 !leading-tight mx-auto max-w-[920px] text-center mb-12">
-                No posts yet. Be the first one to post your exchange request!
+            <div className="w-full mx-auto col-span-2">
+              <h1 className="text-xl lg:text-3xl text-neutral-400 !leading-tight mx-auto">
+                <span className="block">No posts yet... </span>
+                Be the first one to post your exchange request!
               </h1>
             </div>
           )}

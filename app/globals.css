@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 200 20% 98%;
+    --: 200 20% 98%;
     --btn-background: 200 10% 91%;
     --btn-background-hover: 200 10% 89%;
     --foreground: 200 50% 3%;
@@ -18,6 +18,10 @@
       --foreground: 200 20% 96%;
     }
   }
+}
+
+html {
+  scrollbar-color: var(--foreground) var(--background);
 }
 
 @layer base {

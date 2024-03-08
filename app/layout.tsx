@@ -1,5 +1,9 @@
 import { GeistSans } from "geist/font/sans";
 import "@/app/globals.css";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { DeleteModalProvider } from "./context/deleteModalContext";
+import { Toaster, toast } from "sonner";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -18,8 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen flex flex-col items-center overflow-y-scroll">
-      {children}
-    </main>
+    <html lang="en" className={GeistSans.className}>
+      <body className="bg-neutral-950 text-neutral-50 antialiased overflow-x-hidden">
+        {children}
+      </body>
+    </html>
   );
 }

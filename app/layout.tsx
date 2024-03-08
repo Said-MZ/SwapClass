@@ -1,9 +1,5 @@
 import { GeistSans } from "geist/font/sans";
 import "@/app/globals.css";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import { DeleteModalProvider } from "./context/deleteModalContext";
-import { Toaster, toast } from "sonner";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -14,6 +10,12 @@ export const metadata = {
   title: "SwappClass",
   description:
     "Upgrade Your Schedule: Effortlessly Swap Courses & Sections with Ease !",
+  openGraph: {
+    title: "SwappClass",
+    description:
+      "Upgrade Your Schedule: Effortlessly Swap Courses & Sections with Ease !",
+  },
+  
 };
 
 export default function RootLayout({

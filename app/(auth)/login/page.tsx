@@ -2,7 +2,6 @@ import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../submit-button";
-import { toast } from "sonner";
 
 export default function Login({
   searchParams,
@@ -27,7 +26,7 @@ export default function Login({
       );
     }
 
-    return redirect("/login?message=Signed In");
+    return redirect("/app");
   };
 
   return (

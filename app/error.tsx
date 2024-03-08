@@ -1,16 +1,17 @@
-import "@/app/globals.css";
+"use client";
+
 import Btn from "@/components/Btn";
-const NotFound = () => {
+
+const Error = ({ error }: { error: Error }) => {
   return (
     <section className="relative bg-black text-foreground antialiased overflow-x-hidden w-screen h-screen grid place-items-center overflow-hidden">
-      <div className="absolute font-extrabold text-[40vw] z-10 opacity-10">
-        <h2>404</h2>
-      </div>
-
       <div className="z-20">
         <h1 className="text-3xl sm:text-6xl font-bold text-center">
-          Page Not Found{" "}
+          An Error Occurred:
         </h1>
+        <p className="text-md sm:text-xl text-neutral-300 text-center">
+          {error.message}
+        </p>
         <Btn
           isLink={true}
           dark={true}
@@ -23,4 +24,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default Error;

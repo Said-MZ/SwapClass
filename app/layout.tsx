@@ -7,15 +7,14 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "SwappClass",
+  title: "SwapClass",
   description:
     "Upgrade Your Schedule: Effortlessly Swap Courses & Sections with Ease !",
   openGraph: {
-    title: "SwappClass",
+    title: "SwapClass",
     description:
       "Upgrade Your Schedule: Effortlessly Swap Courses & Sections with Ease !",
   },
-  
 };
 
 export default function RootLayout({

@@ -12,7 +12,7 @@ const LandingPage = async () => {
           className="aspect-video max-w-[90vw] max-h-96 sm:max-w-screen-sm sm:max-h-96 rounded-md border-2"
           width="1676"
           height="766"
-          src="https://www.youtube.com/embed/x2Ry1oPmSpA"
+          src="https://www.youtube.com/embed/neMPlk3G5C8"
           title="How to use swap class"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
